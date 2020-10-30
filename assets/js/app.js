@@ -91,7 +91,7 @@ function saveTimeblock(event) {
  * @function loadTimeblockTasks
  * 
  */
-function loadTimeblockTasks() {
+function getTimeblockTasks() {
     for (var i = 0; i < localStorage.length; i++){
         let savedHour = localStorage.key(i); // 9..17
         let associatedTask = localStorage.getItem( savedHour ); // Task
