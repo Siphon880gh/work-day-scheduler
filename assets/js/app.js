@@ -108,6 +108,7 @@ function saveTimeblock(event) {
     localStorage.setItem(hour, description);
 
     console.dir({description, hour});
+    alert(`Saved event "${description}" for ${hour}:00.`);
 }
 
 /**
