@@ -77,9 +77,25 @@ function saveTimeblock(event) {
     let $description = $saveIcon.closest(".time-block").find(".description");
     let $hour = $saveIcon.closest(".time-block").find(".hour");
 
-    let hour = $hour.text(); // Eg. 9AM
+    let hour = $hour.data("military-hour"); // Eg. 9AM
     let description = $description.text(); // eg. Task
     localStorage.setItem(hour, description);
 
     console.dir({description, hour});
+}
+
+/**
+ * Iterate through all timeblock data that are saved to localStorage
+ * and set the text the appropriate timeblock rows
+ * 
+ * @function loadTimeblockTasks
+ * 
+ */
+function loadTimeblockTasks() {
+    for (var i = 0; i < localStorage.length; i++){
+        let savedHour = localStorage.key(i); // 9..17
+        let associatedTask = localStorage.getItem( savedHour ); // Task
+        let $associatedTaskEle = $(`.hour[data-military-hour="${savedHour}"]`).closest(".time-block").find(".description");
+        $associatedTaskEle.text(associatedTask);
+    }
 }
