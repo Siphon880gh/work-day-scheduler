@@ -1,6 +1,12 @@
+/* General Layout */
 body::before {
     content: "CSS Connected"
-}  
+}
+body {
+    padding-bottom: 30px;
+}
+
+/* Time Block */
 .hour {
     width: 6ch;
 }
