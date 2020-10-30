@@ -75,5 +75,11 @@ function colorTimeblocks() {
 function saveTimeblock(event) {
     let $saveIcon = $(event.target);
     let $description = $saveIcon.closest(".time-block").find(".description");
-    console.log($description.text());
+    let $hour = $saveIcon.closest(".time-block").find(".hour");
+
+    let hour = $hour.text(); // Eg. 9AM
+    let description = $description.text(); // eg. Task
+    localStorage.setItem(hour, description);
+
+    console.dir({description, hour});
 }
