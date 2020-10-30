@@ -25,27 +25,29 @@
     <title>Work Day Scheduler</title>
   </head>
 
-  <body onload="loadTodaysDate();">
+  <body onload="loadTodaysDate(); loadTimeblocks();">
     <header class="jumbotron">
       <h1 class="display-3">Work Day Scheduler</h1>
       <p class="lead">A simple calendar app for scheduling your work day</p>
       <p id="currentDay" class="lead"></p>
     </header>
     <div class="container">
+      <div class="time-blocks"></div>
+    </div> <!-- container -->
 
+    <template id="template-time-block">
       <div class="row time-block present">
-        <div class="hour d-flex text-right p-1">9AM</div>
+        <div class="hour d-flex text-right p-1" data-unix="{{unix}}">{{hour}}</div>
         <div class="description flex-grow-1 bd-highlight p-1" contenteditable>Task</div>
         <div class="saveBtn d-flex">
           <i class="fa fa-save" onclick="saveTimeblock(event);"></i>
         </div>
       </div>
-      
-    </div> <!-- container -->
-
+    </template>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> <!-- Moment JS for time API -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script> <!-- Handlebar templating engine -->
     <script src="assets/js/app.js"></script>
   </body>
 </html>

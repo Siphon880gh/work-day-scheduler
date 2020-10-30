@@ -26,6 +26,13 @@ function loadTodaysDate() {
     $("#currentDay").text(humanReadableDate);
 }
 
+function loadTimeblocks() {
+    var template = $("#template-time-block").clone().html();
+    var parameterizedTemplate = Handlebars.compile(template);
+    var generatedHtml = parameterizedTemplate({unix:0, hour:1});
+    $(".time-blocks").append(generatedHtml);
+}
+
 function saveTimeblock(event) {
     let $saveIcon = $(event.target);
     let $description = $saveIcon.closest(".time-block").find(".description");
