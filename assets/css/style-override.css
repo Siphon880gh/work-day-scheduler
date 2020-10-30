@@ -1,0 +1,19 @@
+body::before {
+    content: "CSS Connected"
+}  
+.hour {
+    width: 6ch;
+}
+.description {
+    text-align: left;
+}
+.saveBtn {
+    width: 6ch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.saveBtn i {
+    cursor: pointer;
+    text-align: center;
+}
