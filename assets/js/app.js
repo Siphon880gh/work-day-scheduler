@@ -26,7 +26,7 @@ var TimeUtilities = {
     getCurrentHour: () => {
         let now = moment.now();
         return {
-            militaryTime: moment(now).format("H") // 0..23
+            militaryTime: parseInt(moment(now).format("H")) // 0..23
         }
     }
 }
@@ -43,6 +43,7 @@ function loadTimeblocks() {
         var generatedHtml = parameterizedTemplate(objectHours);
         $(".time-blocks").append(generatedHtml);
     }
+    renderTimeblock({militaryHour:"5", regularHour:"5AM"});
     renderTimeblock({militaryHour:"9", regularHour:"9AM"});
     renderTimeblock({militaryHour:"10", regularHour:"10AM"});
     renderTimeblock({militaryHour:"11", regularHour:"11AM"});
@@ -52,7 +53,23 @@ function loadTimeblocks() {
     renderTimeblock({militaryHour:"15", regularHour:"3PM"});
     renderTimeblock({militaryHour:"16", regularHour:"4PM"});
     renderTimeblock({militaryHour:"17", regularHour:"5PM"});
+}
 
+function colorTimeblocks() {
+    $(".time-block").each( (i,timeBlock)=>{ 
+        let $timeBlock = $(timeBlock);
+        $timeBlock.removeClass("past present future");
+        var timeBlockHour = parseInt($timeBlock.children(".hour").attr("data-military-hour"));
+        var currentHour = TimeUtilities.getCurrentHour().militaryTime;
+        if(currentHour > timeBlockHour) {
+            $timeBlock.addClass("past");
+        } else if(currentHour === timeBlockHour) {
+            $timeBlock.addClass("present");
+        } else {
+            $timeBlock.addClass("future");
+        }
+        debugger;
+     });
 }
 
 function saveTimeblock(event) {

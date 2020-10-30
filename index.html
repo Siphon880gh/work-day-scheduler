@@ -25,7 +25,7 @@
     <title>Work Day Scheduler</title>
   </head>
 
-  <body onload="loadTodaysDate(); loadTimeblocks();">
+  <body onload="loadTodaysDate(); loadTimeblocks(); colorTimeblocks();">
     <header class="jumbotron">
       <h1 class="display-3">Work Day Scheduler</h1>
       <p class="lead">A simple calendar app for scheduling your work day</p>
@@ -36,7 +36,7 @@
     </div> <!-- container -->
 
     <template id="template-time-block">
-      <div class="row time-block present">
+      <div class="row time-block">
         <div class="hour d-flex text-right p-1" data-military-hour="{{militaryHour}}">{{regularHour}}</div>
         <div class="description flex-grow-1 bd-highlight p-1" contenteditable>Task</div>
         <div class="saveBtn d-flex">
