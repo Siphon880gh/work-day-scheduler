@@ -7,11 +7,11 @@ console.log("JS Connected");
  * @object TimeUtilities
  * 
  * @method  getToday
- * @returns {object} object.unix            Unix Time
- * @returns {object} object.humanReadable   Eg. Friday, October 30th, 2020
+ * @returns {object} object.unix                Unix Time
+ * @returns {object} object.humanReadableDate   Eg. Friday, October 30th, 2020
  * 
  * @method  getCurrentHour
- * @returns {object} object.militaryTime    0..23
+ * @returns {object} object.militaryTime        0..23
  * 
  * 
  */
@@ -31,11 +31,21 @@ var TimeUtilities = {
     }
 }
 
+/**
+ * Render today's date under the title
+ * 
+ * @function renderTodaysDate
+ */
 function renderTodaysDate() {
     let humanReadableDate = TimeUtilities.getToday().humanReadableDate
     $("#currentDay").text(humanReadableDate);
 }
 
+/**
+ * Render all the time-blocks from 9am to 5pm without coloring past/present/future yet.
+ * 
+ * @function renderTimeblocks
+ */
 function renderTimeblocks() {
     function renderTimeblock(objectHours) {
         var template = $("#template-time-block").clone().html();
@@ -43,7 +53,6 @@ function renderTimeblocks() {
         var generatedHtml = parameterizedTemplate(objectHours);
         $(".time-blocks").append(generatedHtml);
     }
-    renderTimeblock({militaryHour:"1", regularHour:"1AM"});
     renderTimeblock({militaryHour:"9", regularHour:"9AM"});
     renderTimeblock({militaryHour:"10", regularHour:"10AM"});
     renderTimeblock({militaryHour:"11", regularHour:"11AM"});
@@ -56,6 +65,15 @@ function renderTimeblocks() {
 
 } // renderTimeblocks
 
+/**
+ * Colors the time blocks based on whether they are past, present, or future hours,
+ * by iterating through all time blocks and resetting their colors by removing styling
+ * classes past, present, and future, then adding the appropriate style class based on
+ * comparing the current hour against the hour on the time-block.
+ * 
+ * @function colorTimeblocks
+ * 
+ */
 function colorTimeblocks() {
     $(".time-block").each( (i,timeBlock)=>{ 
         let $timeBlock = $(timeBlock);
@@ -71,7 +89,15 @@ function colorTimeblocks() {
         }
      });
 }
-
+/**
+ * When user clicks save icon, saves the task for that hour to localStorage.
+ * 
+ * @function saveTimeblock
+ * @param {event}           The event.target gets the save icon element, then 
+ *                          traverse up to get the time-block row. Finally, 
+ *                          traverse back down to get the hour and task cells.
+ *                          Then their data can be saved to localStorage.
+ */
 function saveTimeblock(event) {
     let $saveIcon = $(event.target);
     let $description = $saveIcon.closest(".time-block").find(".description");
@@ -85,8 +111,9 @@ function saveTimeblock(event) {
 }
 
 /**
- * Iterate through all timeblock data that are saved to localStorage
- * and set the text the appropriate timeblock rows
+ * Load time block tasks from localStorage by using a for-loop on localStorage keys
+ * that are military hours and match them against data-military-hour attributes
+ * that belong to time blocks. For all matches, change the task description at the time blocks.
  * 
  * @function loadTimeblockTasks
  * 

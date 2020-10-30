@@ -1,6 +1,6 @@
 /* General Layout */
 body::before {
-    content: "CSS Connected"
+    /* content: "CSS Connected"; */
 }
 body {
     padding-bottom: 30px;
