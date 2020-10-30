@@ -25,3 +25,9 @@ function loadTodaysDate() {
     let humanReadableDate = TimeUtilities.getToday().humanReadableDate
     $("#currentDay").text(humanReadableDate);
 }
+
+function saveTimeblock(event) {
+    let $saveIcon = $(event.target);
+    let $description = $saveIcon.closest(".time-block").find(".description");
+    console.log($description.text());
+}
