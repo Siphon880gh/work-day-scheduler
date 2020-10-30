@@ -27,6 +27,7 @@ body {
 /* Contenteditable placeholder */
 .description:empty:before {
     content: attr(data-placeholder);
-}.description:empty {
+}
+.description:empty {
     opacity: .5;
 }
