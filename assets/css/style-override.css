@@ -23,3 +23,10 @@ body {
     cursor: pointer;
     text-align: center;
 }
+
+/* Contenteditable placeholder */
+.description:empty:before {
+    content: attr(data-placeholder);
+}.description:empty {
+    opacity: .5;
+}

@@ -44,7 +44,7 @@
     <template id="template-time-block">
       <div class="row time-block">
         <div class="hour d-flex text-right p-1" data-military-hour="{{militaryHour}}">{{regularHour}}</div>
-        <div class="description flex-grow-1 bd-highlight p-1" contenteditable>Task</div>
+        <div class="description flex-grow-1 bd-highlight p-1" contenteditable data-placeholder="Edit me"></div>
         <div class="saveBtn d-flex">
           <i class="fa fa-save" onclick="saveTimeblock(event);"></i>
         </div>
