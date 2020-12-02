@@ -4,7 +4,7 @@ console.log("JS Connected");
  * 
  * Utility methods for managing time
  * 
- * @object TimeUtilities
+ * @object timeUtilities
  * 
  * @method  getToday
  * @returns {object} object.unix                Unix Time
@@ -15,7 +15,7 @@ console.log("JS Connected");
  * 
  * 
  */
-var TimeUtilities = {
+var timeUtilities = {
     getToday: () => {
         let now = moment.now();
         return {
@@ -37,7 +37,7 @@ var TimeUtilities = {
  * @function renderTodaysDate
  */
 function renderTodaysDate() {
-    let humanReadableDate = TimeUtilities.getToday().humanReadableDate
+    let humanReadableDate = timeUtilities.getToday().humanReadableDate
     $("#currentDay").text(humanReadableDate);
 }
 
@@ -79,7 +79,7 @@ function colorTimeblocks() {
         let $timeBlock = $(timeBlock);
         $timeBlock.removeClass("past present future");
         var timeBlockHour = parseInt($timeBlock.children(".hour").attr("data-military-hour"));
-        var currentHour = TimeUtilities.getCurrentHour().militaryTime;
+        var currentHour = timeUtilities.getCurrentHour().militaryTime;
         if (currentHour > timeBlockHour) {
             $timeBlock.addClass("past");
         } else if (currentHour === timeBlockHour) {
