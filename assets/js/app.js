@@ -53,15 +53,15 @@ function renderTimeblocks() {
         var generatedHtml = parameterizedTemplate(objectHours);
         $(".time-blocks").append(generatedHtml);
     }
-    renderTimeblock({militaryHour:"9", regularHour:"9AM"});
-    renderTimeblock({militaryHour:"10", regularHour:"10AM"});
-    renderTimeblock({militaryHour:"11", regularHour:"11AM"});
-    renderTimeblock({militaryHour:"12", regularHour:"12PM"});
-    renderTimeblock({militaryHour:"13", regularHour:"1PM"});
-    renderTimeblock({militaryHour:"14", regularHour:"2PM"});
-    renderTimeblock({militaryHour:"15", regularHour:"3PM"});
-    renderTimeblock({militaryHour:"16", regularHour:"4PM"});
-    renderTimeblock({militaryHour:"17", regularHour:"5PM"});
+    renderTimeblock({ militaryHour: "9", regularHour: "9AM" });
+    renderTimeblock({ militaryHour: "10", regularHour: "10AM" });
+    renderTimeblock({ militaryHour: "11", regularHour: "11AM" });
+    renderTimeblock({ militaryHour: "12", regularHour: "12PM" });
+    renderTimeblock({ militaryHour: "13", regularHour: "1PM" });
+    renderTimeblock({ militaryHour: "14", regularHour: "2PM" });
+    renderTimeblock({ militaryHour: "15", regularHour: "3PM" });
+    renderTimeblock({ militaryHour: "16", regularHour: "4PM" });
+    renderTimeblock({ militaryHour: "17", regularHour: "5PM" });
 
 } // renderTimeblocks
 
@@ -75,19 +75,19 @@ function renderTimeblocks() {
  * 
  */
 function colorTimeblocks() {
-    $(".time-block").each( (i,timeBlock)=>{ 
+    $(".time-block").each((i, timeBlock) => {
         let $timeBlock = $(timeBlock);
         $timeBlock.removeClass("past present future");
         var timeBlockHour = parseInt($timeBlock.children(".hour").attr("data-military-hour"));
         var currentHour = TimeUtilities.getCurrentHour().militaryTime;
-        if(currentHour > timeBlockHour) {
+        if (currentHour > timeBlockHour) {
             $timeBlock.addClass("past");
-        } else if(currentHour === timeBlockHour) {
+        } else if (currentHour === timeBlockHour) {
             $timeBlock.addClass("present");
         } else {
             $timeBlock.addClass("future");
         }
-     });
+    });
 }
 /**
  * When user clicks save icon, saves the task for that hour to localStorage.
@@ -107,7 +107,7 @@ function saveTimeblock(event) {
     let description = $description.text(); // eg. Task
     localStorage.setItem(hour, description);
 
-    console.dir({description, hour});
+    console.dir({ description, hour });
     alert(`Saved event "${description}" for ${hour}:00.`);
 }
 
@@ -120,9 +120,9 @@ function saveTimeblock(event) {
  * 
  */
 function getTimeblockTasks() {
-    for (var i = 0; i < localStorage.length; i++){
+    for (var i = 0; i < localStorage.length; i++) {
         let savedHour = localStorage.key(i); // 9..17
-        let associatedTask = localStorage.getItem( savedHour ); // Task
+        let associatedTask = localStorage.getItem(savedHour); // Task
         let $associatedTaskEle = $(`.hour[data-military-hour="${savedHour}"]`).closest(".time-block").find(".description");
         $associatedTaskEle.text(associatedTask);
     }
