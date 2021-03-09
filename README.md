@@ -6,7 +6,7 @@ You schedule events for the day. It'll break down the day into work hours which 
 
 Live Demo
 ---
-[Open work calendar app](//Siphon880gh.github.io/ucla-work-day-scheduler)
+[Open work calendar app](//Siphon880gh.github.io/work-day-scheduler)
 
 Screenshots
 ---
